@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  jenkins:
+    image: 'jenkins/jenkins:lts'
+    container_name: jenkins
+    restart: always
+    ports:
+        - 8080:8080
+        - 50000:50000
+    volumes:
+      - dvolume:/var/jenkins_home
+    networks:
+      dnetwork:
+        ipv4_address: 172.6.0.5
+
+volumes:
+    dvolume: {}
+
+networks:
+  dnetwork:
+    external:
+      name: docker_nw
